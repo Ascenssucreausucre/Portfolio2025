@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+const importantProjects = await getCollection(
+  "dev",
+  ({ data }) => data.type === "completed" && data?.important
+);
+const casualProjects = await getCollection(
+  "dev",
+  ({ data }) => data.type === "completed" && !data?.important
+);
+---
+
+<section id="dev">
+  <h2>Développement Web</h2>
+  <h3>Projets finalisés</h3>
+  <div class="site-container">
+    {
+      importantProjects.map(({ id, data }) => (
+        <ProjectCard key={id} {...data} />
+      ))
+    }
+  </div>
+  <div>
+    {casualProjects.map(({ id, data }) => <div>{data.title}</div>)}
+  </div>
+</section>

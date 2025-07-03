@@ -1,14 +1,29 @@
+---
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+---
+
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="/assets/style.css">
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta
+      name="description"
+      content="Bonjour, je suis m'appelle Florian et je suis développeur web. Voici mon portfolio où je partage mes créations et designs ! Je créé principalement..."
+    />
+		<title>Portfolio - Florian Amiot</title>
 	</head>
 	<body>
-		<slot />
+		<Header/>
+		<main>
+			<slot />
+		</main>
+		<Footer/>
 	</body>
 </html>
 

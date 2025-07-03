@@ -1,0 +1,71 @@
+---
+import Tabs from "./Tabs.astro";
+---
+
+<section id="apropos" class="container">
+  <div class="row">
+    <div class="ap-col-1">
+      <img src="/assets/img/moi.png" alt="Photo de moi" />
+    </div>
+    <div class="ap-col-2">
+      <h2>Qui suis‑je ?</h2>
+      <p>
+        Je m'appelle Florian Amiot, j'ai 21ans et je suis en troisième année de
+        B.U.T. MMI (Métiers du Multimédia et d'Internet). Je suis actuellement
+        en recherche de stage(24 mars - 20 juin 2025). J'ai commencé très tôt à
+        m'intéresser au design, et plus récemment, au développement web. Dès mes
+        12ans je m'amusais à créer divers logos et bannières pour mes amis ou
+        "clients", mêlant 2D et 3D. La formation MMI propose trois parcours et
+        je comptais m'orienter vers la création numérique, mais je suis tombé
+        amoureux du développement web de part l'intéractivité que ça apporte, et
+        je pense avoir trouvé ma voie dans ce milieu.
+      </p>
+      <Tabs>
+        <div class="tabc active" id="comp">
+          <ul>
+            <li>
+              <span>Développement Web</span><br />Maîtrises: HTML, CSS,
+              JavaScript, PHP, React
+            </li>
+            <li>
+              <span>Création graphique</span><br />Logiciels maîtrisés:
+              Photoshop, Illustrator, Figma, Cinema4D
+            </li>
+            <li>
+              <span>Audiovisuel</span><br />Logiciels maîtrisés: After Effect,
+              Premiere Pro, DaVinci Resolve, Vegas Pro
+            </li>
+          </ul>
+        </div>
+        <div class="tabc" id="parcours">
+          <ul>
+            <li><span>2022 - 2025</span><br />B.U.T. MMI</li>
+            <li><span>2020 - 2021</span><br />LEA Anglais Japonais</li>
+            <li>
+              <span>2017 - 2020</span><br />BAC STI2D Architecture et
+              Construction
+            </li>
+          </ul>
+        </div>
+        <div class="tabc" id="xp">
+          <ul>
+            <li>
+              <span
+                >Stage au sein du service communication du Taillan-Médoc</span
+              ><br />
+              Stage au cours duquel j'ai aidé à la refonte du site internet de la
+              ville.
+            </li>
+            <li>
+              <span>Graphiste Freelance</span><br />Ce n'était pas vraiment une
+              activité professionnelle, mais plus un loisir.
+            </li>
+            <li>
+              <span>Stage à l'Eypicerie</span><br />Stage en association
+            </li>
+          </ul>
+        </div>
+      </Tabs>
+    </div>
+  </div>
+</section>

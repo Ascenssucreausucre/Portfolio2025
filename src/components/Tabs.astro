@@ -1,0 +1,38 @@
+<script>
+    const tablinks = document.querySelectorAll(".tab h3");
+  const tabcontents = document.querySelectorAll(".tabc");
+
+  function opentab(tabname: string) {
+    for (const tablink of tablinks) {
+      tablink.classList.remove("active");
+    }
+
+    for (const tabcontent of tabcontents) {
+      tabcontent.classList.remove("active");
+    }
+
+    document.getElementById(tabname).classList.add("active");
+
+    const clickedTabLink = document.querySelector(
+      `.tab h3[data-tab="${tabname}"]`
+    );
+    if (clickedTabLink) {
+      clickedTabLink.classList.add("active");
+    }
+  }
+
+  tablinks.forEach(function (tablink) {
+    tablink.addEventListener("click", function () {
+      const tabname = tablink.getAttribute("data-tab");
+      opentab(tabname);
+    });
+  });
+</script>
+
+<div class="tab">
+  <h3 class="active" data-tab="comp">Compétences</h3>
+  <h3 data-tab="parcours">Parcours</h3>
+  <h3 data-tab="xp">Expériences</h3>
+</div>
+
+<slot />

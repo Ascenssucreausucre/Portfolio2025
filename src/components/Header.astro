@@ -1,0 +1,234 @@
+<script>
+  const nav = document.querySelector<HTMLElement>("nav");
+
+  window.addEventListener("scroll", () => {
+    const { scrollTop } = document.documentElement;
+
+    if (scrollTop === 0) {
+      nav.classList.remove("active");
+    } else {
+      nav.classList.add("active");
+    }
+  });
+</script>
+
+<header>
+  <nav>
+    <img src="/assets/img/logo-blue.png" alt="Logo" />
+    <div class="links">
+      <img src="/assets/img/logo-blue.png" alt="Logo" id="logo" />
+      <a href="#apropos">Qui suis‑je ?</a>
+      <a href="#dev">Développement</a>
+      <a href="#assets">Création graphique</a>
+      <a href="#mc">Plus</a>
+      <a href="/assets/CV%20Amiot%20Florian%202024-2025.pdf">Voir mon CV</a>
+    </div>
+    <!-- Burger : on remplace Vue par Vanilla JS → simple toggle de classe -->
+    <!-- <button
+      id="burger"
+      class="burger-button"
+      aria-label="Menu"
+      onclick="document.body.classList.toggle('menu-open');"
+    >
+      <span></span><span></span><span></span>
+    </button> -->
+  </nav>
+  <div class="waves">
+    {
+      Array.from({ length: 5 }).map(() => (
+        <img src="/assets/svg/wave.svg" alt="Vague" />
+      ))
+    }
+  </div>
+  <div class="header-title">
+    <h1>
+      Bonjour, je suis Florian Amiot. Je suis développeur full-stack en
+      freelance.
+    </h1>
+    <img src="/assets/img/logo-white.png" alt="Mon logo" />
+  </div>
+</header>
+
+<style>
+  nav {
+    width: 100%;
+    height: 100px;
+    background-color: transparent;
+    padding-left: 50px;
+    z-index: 100;
+    position: fixed;
+    /* overflow-x: hidden; */
+    backdrop-filter: blur(0px);
+    -webkit-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 0);
+    -moz-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 0);
+    box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 0);
+    transition:
+      background-color 0.15s ease-in,
+      backdrop-filter 0.15s ease-in,
+      box-shadow 0.15s ease-in;
+  }
+
+  nav > img {
+    display: none;
+  }
+
+  #logo {
+    height: 100%;
+    margin-right: 50px;
+    cursor: pointer;
+  }
+
+  nav > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+  }
+
+  nav.active {
+    backdrop-filter: blur(10px);
+    background-color: #e6e6edcb;
+    -webkit-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
+  }
+
+  #brgerbtn {
+    display: none;
+  }
+
+  nav a {
+    margin-right: 50px;
+    text-decoration: none;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: relative;
+    color: rgb(51, 56, 59);
+    transition: color 0.25s ease-in-out;
+    z-index: 100;
+  }
+
+  /* nav a:last-child{
+    padding: 10px;
+    background-color: indianred;
+    border-radius: 50px;
+    z-index: 100;
+} */
+  nav a:hover {
+    color: #3610cc;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #3610cc;
+    transform-origin: bottom left;
+    transition: transform 0.25s cubic-bezier(0.5, 0.02, 0.36, 1);
+  }
+
+  nav a:hover::after {
+    transform: scaleX(0.8);
+    transform-origin: bottom left;
+  }
+
+  .waves {
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+    top: 0;
+    z-index: 50;
+    overflow-x: hidden;
+  }
+
+  .waves img {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    /* mix-blend-mode: luminosity; */
+  }
+
+  .waves img:first-child {
+    width: 1200px;
+    transform: rotate(5deg);
+    top: -320px;
+    left: -100px;
+    filter: invert(98%) sepia(2%) saturate(1916%) hue-rotate(191deg)
+      brightness(97%) contrast(91%) drop-shadow(0px 0px 10px #151a4e75);
+    z-index: 50;
+  }
+
+  .waves img:nth-child(2) {
+    width: 800px;
+    transform: rotate(10deg);
+    top: -150px;
+    left: 50px;
+    filter: invert(12%) sepia(81%) saturate(5756%) hue-rotate(256deg)
+      brightness(82%) contrast(112%) drop-shadow(0px 0px 10px #151a4e75);
+    z-index: 40;
+  }
+
+  .waves img:nth-child(3) {
+    width: 600px;
+    transform: rotate(-15deg);
+    top: -155px;
+    right: 40px;
+    filter: invert(12%) sepia(81%) saturate(5756%) hue-rotate(256deg)
+      brightness(82%) contrast(112%) drop-shadow(0px 0px 10px #151a4e75);
+    z-index: 20;
+  }
+
+  .waves img:nth-child(4) {
+    width: 900px;
+    transform: rotate(-7deg);
+    top: -300px;
+    right: -20px;
+    filter: invert(98%) sepia(2%) saturate(1916%) hue-rotate(191deg)
+      brightness(97%) contrast(91%) drop-shadow(0px 0px 10px #151a4e75);
+    z-index: 30;
+  }
+
+  .waves img:nth-child(5) {
+    width: 800px;
+    transform: rotate(5deg);
+    top: -200px;
+    left: 500px;
+    filter: invert(12%) sepia(81%) saturate(5756%) hue-rotate(256deg)
+      brightness(82%) contrast(112%) drop-shadow(0px 0px 10px #151a4e75);
+    z-index: 20;
+  }
+
+  .header-title {
+    width: 100vw;
+    display: flex;
+    padding-block: 300px 200px;
+    padding-inline: 20%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      113deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgb(5, 5, 78) 100%
+    );
+  }
+
+  .header-title h1 {
+    color: #e6e6ed;
+    text-align: end;
+  }
+  @media screen and (min-width: 700px) {
+    .header-title h1 {
+      max-width: 50%;
+    }
+  }
+
+  .header-title img {
+    scale: 40%;
+  }
+</style>
