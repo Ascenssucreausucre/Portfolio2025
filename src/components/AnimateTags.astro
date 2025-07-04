@@ -1,0 +1,67 @@
+---
+/**
+ * <AnimateTags slugs={["react","nodejs","tailwind"]} size={20} />
+ * Affiche une liste de <TechTag> et anime cycliquement chaque tag avec GSAP + stagger.
+ */
+import TechTag from "./TechTag.astro";
+import { uid } from "uid";
+interface Props {
+  slugs: string[];
+  size?: number;
+}
+const { slugs, size = 24 } = Astro.props as Props;
+const cid = `tags-${uid(6)}`;
+---
+
+<div id={cid} class="tags-container">
+  {slugs.map((slug) => <TechTag slug={slug} size={size} />)}
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const container = document.getElementById("{cid}");
+  if (container) {
+    const tags = container.querySelectorAll(".tech-tag");
+
+    // timeline loop
+    const loopTL = gsap.timeline({ repeat: -1, repeatDelay: 2 });
+
+    loopTL
+      .to(tags, {
+        backgroundColor: "rgb(41, 18, 18)",
+        color: (i, el) => getComputedStyle(el).getPropertyValue("--glow"),
+        outlineColor: (i, el) =>
+          getComputedStyle(el).getPropertyValue("--glow"),
+        filter: (i, el) =>
+          el.classList.contains("invert")
+            ? `invert(1) drop-shadow(0 0 4px ${getComputedStyle(el).getPropertyValue("--glow")})`
+            : `drop-shadow(0 0 4px ${getComputedStyle(el).getPropertyValue("--glow")})`,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.05,
+      })
+      .to(
+        tags,
+        {
+          backgroundColor: "#f5f5f5",
+          color: "black",
+          outlineColor: "transparent",
+          filter: (i, el) =>
+            el.classList.contains("invert") ? "invert(0)" : "none",
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.05,
+        },
+        "+=0.5"
+      );
+  }
+</script>
+
+<style>
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>
