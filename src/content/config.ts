@@ -33,6 +33,7 @@ const dev = defineCollection({
       github: z.string().url().optional(),
       demo: z.string().url().optional(),
     }),
+    tech: z.array(z.string()).min(1),
     type: z.enum(["completed", "wip"]),
   }),
 });

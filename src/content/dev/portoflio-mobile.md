@@ -2,8 +2,8 @@
 title: "Portfolio Mobile"
 slug: "portfolio-mobile"
 important: false
-image: "/assets/svg/Easycrea portfolio.svg"
-date: 2022-01-12
+image: "/assets/img/portfoliom.png"
+date: 2022-12-01
 description: >
   Portfolio pour smartphone réalisé en première année. J'ai essayé
                       de me mettre au défi de faire un site coloré, sans nuances trop
@@ -12,5 +12,6 @@ description: >
                       de contraintes.
 actions:
   demo: "https://amiotflorian.alwaysdata.net/PortfolioS2/"
+tech: ["html", "css", "javascript"]
 type: "completed"
 ---

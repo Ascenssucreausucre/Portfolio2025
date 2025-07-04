@@ -3,8 +3,8 @@ title: "EasyCrea"
 slug: "easycrea"
 important: true
 image: "/assets/svg/Easycrea portfolio.svg"
-desktop: "/assets/svg/Easycrea portfolio.svg"
-mobile: "/assets/svg/Easycrea portfolio.svg"
+desktop: "/assets/img/easycrea-desktop.png"
+mobile: "/assets/img/easycrea-mobile.png"
 date: 2025-01-01
 description: >
   EasyCrea est un site de création de deck, développé en React lors d'un
@@ -15,5 +15,6 @@ description: >
 actions:
   github: "https://github.com/Ascenssucreausucre/EasyCrea"
   demo: "https://easycrea.netlify.app/"
+tech: ["symfony", "php", "html", "css", "react", "javascript"]
 type: "completed"
 ---

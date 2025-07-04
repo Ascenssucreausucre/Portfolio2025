@@ -1,27 +1,163 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
-const importantProjects = await getCollection(
-  "dev",
-  ({ data }) => data.type === "completed" && data?.important
-);
-const casualProjects = await getCollection(
-  "dev",
-  ({ data }) => data.type === "completed" && !data?.important
-);
+import CasualProjectCard from "./CasualProjectCard.astro";
+
+type DevEntry = CollectionEntry<"dev">;
+
+function sortByDateDesc(a: DevEntry, b: DevEntry) {
+  return b.data.date.getTime() - a.data.date.getTime(); // récent → ancien
+}
+
+const importantProjects = (
+  await getCollection(
+    "dev",
+    ({ data }) => data.type === "completed" && data?.important
+  )
+).sort(sortByDateDesc);
+
+const casualProjects = (
+  await getCollection(
+    "dev",
+    ({ data }) => data.type === "completed" && !data?.important
+  )
+).sort(sortByDateDesc);
 ---
 
 <section id="dev">
   <h2>Développement Web</h2>
-  <h3>Projets finalisés</h3>
-  <div class="site-container">
-    {
-      importantProjects.map(({ id, data }) => (
-        <ProjectCard key={id} {...data} />
-      ))
-    }
+  <div class="important-projects">
+    <h3>Projets majeurs</h3>
+    <div class="site-container" id="projects-track">
+      <button class="left-arrow arrow" id="previous-arrow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-left-icon lucide-chevron-left"
+          ><path d="m15 18-6-6 6-6"></path></svg
+        >
+      </button>
+      {importantProjects.map(({ data }) => <ProjectCard {...data} />)}
+      <button class="right-arrow arrow" id="next-arrow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-right-icon lucide-chevron-right"
+          ><path d="m9 18 6-6-6-6"></path></svg
+        >
+      </button>
+    </div>
   </div>
-  <div>
-    {casualProjects.map(({ id, data }) => <div>{data.title}</div>)}
+  <div class="smaller-projects">
+    <h3>Plus petits projets</h3>
+    <div class="smaller-projects-container">
+      {casualProjects.map(({ data }) => <CasualProjectCard {...data} />)}
+    </div>
   </div>
 </section>
+
+<style>
+  .important-projects {
+    background-color: #190f47;
+    margin-block: 1rem;
+    padding-block: 1rem;
+    position: relative;
+  }
+  .important-projects > h3 {
+    text-align: center;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .site-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-inline: calc(15vw - 2rem);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .arrow {
+    all: unset;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    padding-inline: clamp(5px, 5vw - 1rem, 20px);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .arrow:hover {
+    background-color: rgba(185, 185, 185, 0.3);
+    backdrop-filter: blur(5px);
+  }
+  .arrow:disabled {
+    display: none;
+  }
+  .arrow > svg {
+    scale: 2;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+  }
+  .left-arrow {
+    left: 0;
+  }
+  .right-arrow {
+    right: 0;
+  }
+  .smaller-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+</style>
+
+<script>
+  const track = document.getElementById("projects-track");
+  const prevBtn = document.getElementById(
+    "previous-arrow"
+  )! as HTMLButtonElement;
+  const nextBtn = document.getElementById("next-arrow")! as HTMLButtonElement;
+
+  function scrollTrack(forward = true) {
+    if (!track) return;
+    const step = (forward ? 1 : -1) * track.clientWidth;
+    track.scrollBy({ left: step, behavior: "auto" });
+  }
+
+  prevBtn?.addEventListener("click", () => scrollTrack(false));
+  nextBtn?.addEventListener("click", () => scrollTrack(true));
+
+  // function updateArrows() {
+  //   if (!track) return;
+  //   const max = track.scrollWidth - track.clientWidth;
+
+  //   prevBtn.disabled = track.scrollLeft <= 0;
+  //   nextBtn.disabled = track.scrollLeft >= max;
+  // }
+
+  // /* maj initiale + écouteurs */
+  // updateArrows();
+  // track?.addEventListener("scroll", updateArrows, { passive: true });
+</script>

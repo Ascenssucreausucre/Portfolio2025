@@ -1,0 +1,167 @@
+---
+/**
+ * Composant <TechTag slug="react" size={24} />
+ * Affiche une puce (tag) avec l’icône et le nom d’une technologie.
+ *
+ * - `slug` : identifiant minuscule/kebab
+ * - `size` : taille de l’icône en px (optionnel, défaut 24)
+ *
+ * Pour chaque slug listé dans `techs`, placez l’icône correspondante
+ * dans `public/assets/icons/<slug>.svg`.
+ */
+interface Props {
+  slug: string;
+  size?: number;
+}
+
+const { slug, size = 24 } = Astro.props as Props;
+
+const techs: Record<string, { label: string; icon: string; color: string }> = {
+  html: { label: "HTML", icon: "/assets/icons/html.svg", color: "#E34F26" },
+  css: { label: "CSS", icon: "/assets/icons/css.svg", color: "#1572B6" },
+  javascript: {
+    label: "JavaScript",
+    icon: "/assets/icons/javascript.svg",
+    color: "#F7DF1E",
+  },
+  typescript: {
+    label: "TypeScript",
+    icon: "/assets/icons/typescript.svg",
+    color: "#3178C6",
+  },
+  php: { label: "PHP", icon: "/assets/icons/php.svg", color: "#777BB4" },
+  nodejs: {
+    label: "Node.js",
+    icon: "/assets/icons/nodejs.svg",
+    color: "#3C873A",
+  },
+  react: { label: "React", icon: "/assets/icons/react.svg", color: "#61DAFB" },
+  nextjs: {
+    label: "Next.js",
+    icon: "/assets/icons/nextjs.svg",
+    color: "#FFFFFF",
+  },
+  express: {
+    label: "Express",
+    icon: "/assets/icons/express.svg",
+    color: "#FFFFFF",
+  },
+  threejs: {
+    label: "Three.js",
+    icon: "/assets/icons/threejs.svg",
+    color: "#FFFFFF",
+  },
+  tailwind: {
+    label: "Tailwind",
+    icon: "/assets/icons/tailwindcss.svg",
+    color: "#06B6D4",
+  },
+  wordpress: {
+    label: "WordPress",
+    icon: "/assets/icons/wordpress.svg",
+    color: "#31A8FF",
+  },
+  symfony: {
+    label: "Symfony",
+    icon: "/assets/icons/symfony.svg",
+    color: "#FFFFFF",
+  },
+  astro: { label: "Astro", icon: "/assets/icons/astro.svg", color: "#FF5D01" },
+  gsap: { label: "GSAP", icon: "/assets/icons/gsap.svg", color: "#88CE02" },
+  socketio: {
+    label: "Socket.io",
+    icon: "/assets/icons/socketio.svg",
+    color: "#FFFFFF",
+  },
+  push: {
+    label: "Push Notifications",
+    icon: "/assets/icons/push.svg",
+    color: "#5B5BFF",
+  },
+  sequelize: {
+    label: "Sequelize",
+    icon: "/assets/icons/sequelize.svg",
+    color: "#52B0E7",
+  },
+  prestashop: {
+    label: "Prestashop",
+    icon: "/assets/icons/prestashop.svg",
+    color: "#DF0067",
+  },
+  aftereffect: {
+    label: "After Effects",
+    icon: "/assets/icons/aftereffect.svg",
+    color: "#9999FF",
+  },
+  c4d: { label: "Cinema 4D", icon: "/assets/icons/c4d.png", color: "#31A8FF" },
+  davinci: {
+    label: "DaVinci Resolve",
+    icon: "/assets/icons/davinci.svg",
+    color: "#FF2A00",
+  },
+  figma: { label: "Figma", icon: "/assets/icons/figma.svg", color: "#F24E1E" },
+  illustrator: {
+    label: "Adobe Illustrator",
+    icon: "/assets/icons/illustrator.svg",
+    color: "#FF9A00",
+  },
+  photoshop: {
+    label: "Adobe Photoshop",
+    icon: "/assets/icons/photoshop.svg",
+    color: "#31A8FF",
+  },
+  premierepro: {
+    label: "Adobe Premiere Pro",
+    icon: "/assets/icons/premierepro.svg",
+    color: "#EA77FF",
+  },
+};
+
+const tech = techs[slug.toLowerCase()];
+if (!tech) {
+  throw new Error(`Unknown tech slug: ${slug}`);
+}
+---
+
+<span
+  class={`tech-tag${tech.color === "#FFFFFF" ? " invert" : ""}`}
+  style={`--glow:${tech.color}`}
+>
+  <img src={tech.icon} alt={tech.label} width={size} height={size} />
+  {tech.label}
+</span>
+
+<style>
+  .tech-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-block: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    background: #f5f5f5;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 600;
+    white-space: nowrap;
+    color: black;
+    outline: solid 2px transparent;
+    transition:
+      background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      outline 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+      filter 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .tech-tag:hover {
+    background-color: rgb(41, 18, 18);
+    color: var(--glow);
+    outline: solid 2px var(--glow);
+  }
+  .tech-tag img {
+    display: block;
+    filter: drop-shadow(0 0 4px var(--glow)) invert(0);
+  }
+  .tech-tag:hover.invert img {
+    filter: invert(1) drop-shadow(0 0 4px var(--glow));
+  }
+</style>

@@ -1,5 +1,24 @@
 ---
 import Tabs from "./Tabs.astro";
+import TechTag from "./TechTag.astro";
+
+const skills = {
+  web: [
+    "html",
+    "css",
+    "javascript",
+    "php",
+    "react",
+    "nextjs",
+    "express",
+    "threejs",
+    "wordpress",
+    "symfony",
+    "astro",
+  ],
+  design: ["photoshop", "illustrator", "c4d", "figma"],
+  motionDesign: ["aftereffect", "premierepro", "davinci"],
+};
 ---
 
 <section id="apropos" class="container">
@@ -10,30 +29,35 @@ import Tabs from "./Tabs.astro";
     <div class="ap-col-2">
       <h2>Qui suis‑je ?</h2>
       <p>
-        Je m'appelle Florian Amiot, j'ai 21ans et je suis en troisième année de
-        B.U.T. MMI (Métiers du Multimédia et d'Internet). Je suis actuellement
-        en recherche de stage(24 mars - 20 juin 2025). J'ai commencé très tôt à
-        m'intéresser au design, et plus récemment, au développement web. Dès mes
-        12ans je m'amusais à créer divers logos et bannières pour mes amis ou
-        "clients", mêlant 2D et 3D. La formation MMI propose trois parcours et
-        je comptais m'orienter vers la création numérique, mais je suis tombé
-        amoureux du développement web de part l'intéractivité que ça apporte, et
-        je pense avoir trouvé ma voie dans ce milieu.
+        Je m'appelle Florian Amiot, j'ai 22ans et je suis tout juste diplômé
+        d'un B.U.T. MMI (Métiers du Multimédia et d'Internet), spécialité
+        développement web. J'ai commencé très tôt à m'intéresser au design, et
+        plus récemment, au développement web. Dès mes 12ans je m'amusais à créer
+        divers logos et bannières pour mes amis ou 'clients', mêlant 2D et 3D.
+        La formation MMI m'a permi de découvrir le développement web, ce qui m'a
+        fait changer la vision que j'avais de mon avenir professionnel. Ayant de
+        bonnes bases en design, j'ai de solides bases dans le webdesign, et donc
+        le front-end. Je porte également beaucoup d'intérêt pour le
+        développement back-end, dans lequel je ne cesse de me perfectionner.
       </p>
       <Tabs>
         <div class="tabc active" id="comp">
           <ul>
             <li>
-              <span>Développement Web</span><br />Maîtrises: HTML, CSS,
-              JavaScript, PHP, React
+              <span>Développement Web</span><br />
+              {skills.web.map((skill) => <TechTag slug={skill} size={16} />)}
             </li>
             <li>
-              <span>Création graphique</span><br />Logiciels maîtrisés:
-              Photoshop, Illustrator, Figma, Cinema4D
+              <span>Création graphique</span><br />
+              {skills.design.map((skill) => <TechTag slug={skill} size={16} />)}
             </li>
             <li>
-              <span>Audiovisuel</span><br />Logiciels maîtrisés: After Effect,
-              Premiere Pro, DaVinci Resolve, Vegas Pro
+              <span>Audiovisuel</span><br />
+              {
+                skills.motionDesign.map((skill) => (
+                  <TechTag slug={skill} size={16} />
+                ))
+              }
             </li>
           </ul>
         </div>

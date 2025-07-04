@@ -1,0 +1,133 @@
+---
+import TechTag from "./TechTag.astro";
+
+interface Props {
+  title: string;
+  image: string;
+  description: string;
+  tech: Array<string>;
+  date: Date;
+  actions: { github?: string; demo?: string };
+}
+
+// On ajoute éventuellement des valeurs par défaut
+const { title, image, description, actions, tech, date } = Astro.props as Props;
+---
+
+<article class="small-project" style={`background-image: url("${image}")`}>
+  <div class="content">
+    <div class="infos">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div class="date">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-calendar-icon lucide-calendar"
+          ><path d="M8 2v4"></path><path d="M16 2v4"></path><rect
+            width="18"
+            height="18"
+            x="3"
+            y="4"
+            rx="2"></rect><path d="M3 10h18"></path></svg
+        ><span
+          >{
+            date
+              .toLocaleDateString("fr-FR", {
+                year: "numeric",
+                month: "long",
+              })
+              .replace(/_/g, " ")
+              .replace(/\b\w/g, (char) => char.toUpperCase())
+          }</span
+        >
+      </div>
+      <ul>
+        {
+          tech.map((techno) => (
+            <li>
+              <TechTag slug={techno} size={12} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="button-container">
+      {
+        actions?.demo && (
+          <a href={actions.demo} class="button" target="_blank">
+            Voir le site
+          </a>
+        )
+      }
+      {
+        actions?.github && (
+          <a href={actions.github} target="_blank">
+            <img src="/assets/img/medias/github.png" alt="Lien GitHub" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .small-project {
+    height: 100%;
+    margin-block: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    aspect-ratio: 5/9;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.1));
+  }
+  .content {
+    background-color: #190f47e3;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.2s ease-out;
+    height: 100%;
+    text-align: start;
+    padding: 0.5rem 1rem;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+  }
+  .infos {
+    flex: 1;
+  }
+  .infos > p {
+    font-size: clamp(0.65rem, 1.2vw, 1rem);
+  }
+  .small-project:hover .content {
+    opacity: 1;
+  }
+  .date {
+    font-weight: 900;
+  }
+  .date svg {
+    margin-right: 0.25rem;
+    stroke-width: 2px;
+  }
+  .button-container img {
+    filter: invert();
+  }
+  ul {
+    padding-block: 0.5rem;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>

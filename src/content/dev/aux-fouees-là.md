@@ -2,7 +2,9 @@
 title: "Aux Fouées Là"
 slug: "aux-fouees-la"
 important: true
-image: "/assets/svg/Easycrea portfolio.svg"
+image: "/assets/img/auxfoueesla.png"
+desktop: "/assets/img/auxfoueesla.png"
+mobile: "/assets/img/auxfoueesla-mobile.png"
 date: 2024-01-01
 description: >
   Aux Fouées Là est un food truck fictif. Sur ce site, il est
@@ -12,5 +14,6 @@ description: >
                 administrateur.
 actions:
   demo: "https://srochedix.alwaysdata.net/auxfoueesla/index.php"
+tech: ["symfony", "php", "html", "css", "javascript"]
 type: "completed"
 ---

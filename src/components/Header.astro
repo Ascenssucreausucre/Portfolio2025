@@ -21,7 +21,9 @@
       <a href="#dev">Développement</a>
       <a href="#assets">Création graphique</a>
       <a href="#mc">Plus</a>
-      <a href="/assets/CV%20Amiot%20Florian%202024-2025.pdf">Voir mon CV</a>
+      <a href="/assets/CV%20Amiot%20Florian%202024-2025.pdf" target="_blank"
+        >Voir mon CV</a
+      >
     </div>
     <!-- Burger : on remplace Vue par Vanilla JS → simple toggle de classe -->
     <!-- <button
@@ -42,8 +44,8 @@
   </div>
   <div class="header-title">
     <h1>
-      Bonjour, je suis Florian Amiot. Je suis développeur full-stack en
-      freelance.
+      Bonjour, je suis Florian Amiot, développeur full-stack à la recherche d'un
+      emploi.
     </h1>
     <img src="/assets/img/logo-white.png" alt="Mon logo" />
   </div>
@@ -52,9 +54,9 @@
 <style>
   nav {
     width: 100%;
-    height: 100px;
+    height: 80px;
     background-color: transparent;
-    padding-left: 50px;
+    padding-inline: 50px;
     z-index: 100;
     position: fixed;
     /* overflow-x: hidden; */
@@ -88,7 +90,7 @@
 
   nav.active {
     backdrop-filter: blur(10px);
-    background-color: #e6e6edcb;
+    background-color: #e6e6ede5;
     -webkit-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
     -moz-box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 15px -9px rgba(66, 68, 90, 1);
@@ -179,8 +181,8 @@
     transform: rotate(-15deg);
     top: -155px;
     right: 40px;
-    filter: invert(12%) sepia(81%) saturate(5756%) hue-rotate(256deg)
-      brightness(82%) contrast(112%) drop-shadow(0px 0px 10px #151a4e75);
+    filter: invert(98%) sepia(2%) saturate(1916%) hue-rotate(191deg)
+      brightness(97%) contrast(91%) drop-shadow(0px 0px 10px #151a4e75);
     z-index: 20;
   }
 
@@ -207,20 +209,72 @@
   .header-title {
     width: 100vw;
     display: flex;
-    padding-block: 300px 200px;
-    padding-inline: 20%;
+    padding-block: 300px 100px;
+    padding-inline: 15%;
+    gap: 2rem;
     justify-content: center;
     align-items: center;
     background: linear-gradient(
       113deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgb(5, 5, 78) 100%
+      rgb(5, 2, 65) 0%,
+      rgba(2, 0, 36, 1) 50%,
+      rgb(8, 8, 102) 100%
     );
   }
 
   .header-title h1 {
     color: #e6e6ed;
     text-align: end;
+  }
+  @media screen and (max-width: 1070px) {
+    nav {
+      padding-left: 20px;
+    }
+
+    nav a {
+      font-size: 1rem;
+    }
+
+    #logo {
+      height: 75%;
+    }
+
+    .waves img:first-child {
+      width: 1200px;
+      top: -320px;
+      left: -200px;
+    }
+
+    .waves img:nth-child(2) {
+      transform: rotate(15deg);
+      width: 800px;
+      top: -160px;
+      left: 0px;
+    }
+
+    .waves img:nth-child(3) {
+      transform: rotate(-5deg);
+      width: 600px;
+      top: -90px;
+      right: auto;
+      left: 50px;
+    }
+
+    .waves img:nth-child(4) {
+      transform: rotate(-5deg);
+      width: 600px;
+      top: -90px;
+      right: -50px;
+      filter: invert(12%) sepia(81%) saturate(5756%) hue-rotate(256deg)
+        brightness(82%) contrast(112%) drop-shadow(0px 0px 10px #151a4e75);
+    }
+
+    .waves img:nth-child(5) {
+      z-index: 10;
+      width: 800px;
+      top: -170px;
+      left: -500px;
+    }
   }
   @media screen and (min-width: 700px) {
     .header-title h1 {
@@ -229,6 +283,191 @@
   }
 
   .header-title img {
-    scale: 40%;
+    scale: 75%;
+  }
+
+  @media screen and (max-width: 700px) {
+    a:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    nav {
+      position: fixed;
+      backface-visibility: hidden;
+      height: 60px;
+      padding-left: 0;
+      background-color: #e6e6ed;
+      width: 100vw;
+      line-height: 50px;
+    }
+
+    nav > img {
+      display: block;
+      height: 80%;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 6px;
+    }
+
+    nav > div:first-of-type {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 20px;
+      height: 300px;
+      background-color: #e6e6ed;
+      opacity: 1;
+      translate: 0;
+      transition:
+        opacity 0.15s ease-in,
+        translate 0.15s ease-out;
+      @starting-style {
+        opacity: 0;
+        translate: 0 -50px;
+      }
+    }
+
+    nav > div:first-of-type.active {
+      display: flex;
+    }
+
+    nav > div:first-of-type > img {
+      display: none;
+    }
+
+    nav a {
+      font-size: 1.5em;
+      margin-right: 0;
+    }
+
+    nav.active {
+      background-color: #e6e6ed;
+    }
+
+    .waves img:first-child {
+      width: 1200px;
+      top: -360px;
+      left: -200px;
+    }
+
+    .waves img:nth-child(2) {
+      transform: rotate(15deg);
+      width: 800px;
+      top: -190px;
+      left: 0px;
+    }
+
+    .waves img:nth-child(3) {
+      transform: rotate(-5deg);
+      width: 600px;
+      top: -120px;
+      right: auto;
+      left: 50px;
+    }
+
+    .waves img:nth-child(4) {
+      display: none;
+    }
+
+    .waves img:nth-child(5) {
+      z-index: 10;
+      width: 800px;
+      top: -200px;
+      left: -500px;
+    }
+
+    body {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    /** burger **/
+
+    button {
+      cursor: pointer;
+    }
+
+    /* remove blue outline */
+    button:focus {
+      outline: 0;
+    }
+
+    .burger-button {
+      position: relative;
+      height: 30px;
+      width: 32px;
+      display: block;
+      z-index: 60;
+      border: 0;
+      border-radius: 0;
+      background-color: transparent;
+      pointer-events: all;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .burger-bar {
+      background-color: #3610cc;
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      left: 6px;
+      height: 2px;
+      width: auto;
+      margin-top: -1px;
+      transition:
+        transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+        opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .burger-bar--1 {
+      -webkit-transform: translateY(-6px);
+      transform: translateY(-6px);
+    }
+
+    .burger-bar--2 {
+      transform-origin: 100% 50%;
+      transform: scaleX(0.8);
+    }
+
+    .burger-button:hover .burger-bar--2 {
+      transform: scaleX(1);
+    }
+
+    .no-touchevents .burger-bar--2:hover {
+      transform: scaleX(1);
+    }
+
+    .burger-bar--3 {
+      transform: translateY(6px);
+    }
+
+    #burger.active .burger-button {
+      transform: rotate(-180deg);
+    }
+
+    #burger.active .burger-bar--1 {
+      transform: rotate(45deg);
+    }
+
+    #burger.active .burger-bar--2 {
+      opacity: 0;
+    }
+
+    #burger.active .burger-bar--3 {
+      transform: rotate(-45deg);
+    }
+
+    #brgerbtn {
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      height: 50px;
+      width: 50px;
+      background-color: transparent;
+      backdrop-filter: blur(0);
+    }
   }
 </style>

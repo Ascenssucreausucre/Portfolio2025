@@ -18,6 +18,17 @@ body {
   overflow-x: hidden;
   background-color: #e6e6ed;
   width: 100vw;
+  font-family: "Exo 2", sans-serif;
+}
+section {
+  padding-top: 100px;
+}
+.primary {
+  color: #3610cc;
+}
+
+.alt-background {
+  background-color: #190f47;
 }
 
 a {
@@ -34,7 +45,6 @@ h2 {
   font-size: 2.5rem;
   font-weight: 900;
 }
-
 h3 {
   font-family: "Exo 2", sans-serif;
   font-size: 1.5rem;
@@ -62,7 +72,7 @@ p {
     width: 80vw;
 } */
 #apropos {
-  padding: 40px 10vw 40px 10vw;
+  padding: 100px 10vw;
   color: #3610cc;
   width: 100%;
 }
@@ -164,7 +174,6 @@ p {
 #assets,
 #dev {
   background-color: #e6e6ed;
-  padding-top: 20px;
   margin-bottom: 50px;
   transition: height 0.2s ease-in-out;
 }
@@ -401,19 +410,6 @@ p {
     brightness(79%) contrast(104%);
 }
 
-.site-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 50px;
-  padding: 50px 100px 50px 100px;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  background-color: #190f47;
-}
-
 #dev > div::-webkit-scrollbar {
   display: none;
 }
@@ -463,7 +459,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-inline: 20%;
+  margin-block: 1rem;
   max-height: 52px;
 }
 .button-container img {
@@ -1245,7 +1241,6 @@ footer img {
 
   .site-container {
     padding: 40px 10vw 40px 10vw;
-    height: 600px;
     width: 100%;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
