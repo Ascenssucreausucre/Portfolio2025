@@ -118,7 +118,8 @@ const casualProjects = (
   }
   .arrow > svg {
     scale: 2;
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+    mix-blend-mode: color-dodge;
   }
   .left-arrow {
     left: 0;
@@ -139,6 +140,11 @@ const casualProjects = (
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
+  }
+  @media screen and (max-width: 700px) {
+    .arrow {
+      display: none;
+    }
   }
 </style>
 
