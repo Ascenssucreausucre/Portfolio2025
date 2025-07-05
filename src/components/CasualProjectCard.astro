@@ -12,13 +12,17 @@ interface Props {
 
 // On ajoute éventuellement des valeurs par défaut
 const { title, image, description, actions, tech, date } = Astro.props as Props;
+
+function capitalizeFirstLetter(val: string) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
 ---
 
 <article class="small-project" style={`background-image: url("${image}")`}>
   <div class="content">
     <div class="infos">
       <h3>{title}</h3>
-      <p>{description}</p>
+      <p style="margin-bottom: 1rem;">{description}</p>
       <div class="date">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,13 +43,12 @@ const { title, image, description, actions, tech, date } = Astro.props as Props;
             rx="2"></rect><path d="M3 10h18"></path></svg
         ><span
           >{
-            date
-              .toLocaleDateString("fr-FR", {
+            capitalizeFirstLetter(
+              date.toLocaleDateString("fr-FR", {
                 year: "numeric",
                 month: "long",
               })
-              .replace(/_/g, " ")
-              .replace(/\b\w/g, (char) => char.toUpperCase())
+            )
           }</span
         >
       </div>
@@ -69,7 +72,7 @@ const { title, image, description, actions, tech, date } = Astro.props as Props;
       }
       {
         actions?.github && (
-          <a href={actions.github} target="_blank">
+          <a href={actions.github} target="_blank" class="button">
             <img src="/assets/img/medias/github.png" alt="Lien GitHub" />
           </a>
         )
@@ -86,14 +89,15 @@ const { title, image, description, actions, tech, date } = Astro.props as Props;
     color: white;
     aspect-ratio: 5/9;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.1));
   }
   .content {
     background-color: #190f47e3;
     backdrop-filter: blur(5px);
     transition: opacity 0.2s ease-out;
-    height: 100%;
+    min-height: 100%;
     text-align: start;
     padding: 0.5rem 1rem;
     opacity: 0;
@@ -102,11 +106,14 @@ const { title, image, description, actions, tech, date } = Astro.props as Props;
     justify-content: start;
     align-items: stretch;
   }
+  .small-project .button-container {
+    gap: 0;
+  }
   .infos {
     flex: 1;
   }
   .infos > p {
-    font-size: clamp(0.65rem, 1.2vw, 1rem);
+    font-size: clamp(0.65rem, 1vw, 1rem);
   }
   .small-project:hover .content {
     opacity: 1;
@@ -118,14 +125,14 @@ const { title, image, description, actions, tech, date } = Astro.props as Props;
     margin-right: 0.25rem;
     stroke-width: 2px;
   }
-  .button-container img {
-    filter: invert();
-  }
   ul {
     padding-block: 0.5rem;
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+  h3 {
+    color: white;
   }
 </style>

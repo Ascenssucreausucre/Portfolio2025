@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  images: Array<string>;
+  description: string;
+  date: Date;
+}
+
+// On ajoute éventuellement des valeurs par défaut
+const { title, description, date, images } = Astro.props as Props;
+---
+
+<article class="design-item">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <div class="image-container">
+    {
+      images.map((url, index) => {
+        const max = images.length + 1;
+        const step = 100 / max;
+        return (
+          <img
+            src={url}
+            alt={`${title}-${index}`}
+            style={`left: ${index * 10}%;`}
+          />
+        );
+      })
+    }
+  </div>
+</article>
+
+<style>
+  .design-item {
+    background-color: var(--background-color);
+    color: black;
+    width: clamp(150px, 60%, 1200px);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.5));
+    margin-block: 2rem;
+  }
+  .design-item:nth-child(odd) {
+    margin-left: auto;
+  }
+  .design-item p {
+    margin-block: 1rem;
+  }
+  .image-container {
+    height: 300px;
+    position: relative;
+  }
+  .image-container > img {
+    max-height: 100%;
+    width: auto;
+    position: absolute;
+    border-radius: 15px;
+    outline: 1px solid white;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)) blur(0);
+    backdrop-filter: blur(5px);
+    transition: scale 0.5s ease-out;
+  }
+  .image-container:has(img:hover) img:not(:hover) {
+  }
+  .image-container > img:hover {
+    z-index: 1000;
+    scale: 1.05;
+  }
+</style>

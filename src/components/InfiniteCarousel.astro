@@ -1,0 +1,55 @@
+---
+const images = Object.values(
+  import.meta.glob("/public/assets/img/slider/*.{png,jpg,jpeg,webp,svg}", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  })
+) as string[];
+
+console.log(images);
+---
+
+<div class="carousel-wrapper">
+  <div class="carousel-track">
+    {
+      images
+        .concat(images)
+        .map((src, i) => (
+          <img src={src} alt={`slide-${i}`} class="carousel-image" />
+        ))
+    }
+  </div>
+</div>
+
+<style>
+  .carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+    margin-block: 2rem;
+    padding-inline: 2rem;
+  }
+
+  .carousel-track {
+    display: flex;
+    width: max-content;
+    justify-content: space-between;
+    gap: 5vw;
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .carousel-image {
+    height: clamp(100px, 10vw, 300px);
+    flex-shrink: 0;
+    border-radius: 15px;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

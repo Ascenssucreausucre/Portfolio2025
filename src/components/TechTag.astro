@@ -136,7 +136,7 @@ if (!tech) {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-block: 0.25rem;
+    /* margin-block: 0.25rem; */
     padding: 0.25rem 0.6rem;
     background: #f5f5f5;
     border-radius: 100px;
@@ -146,13 +146,15 @@ if (!tech) {
     white-space: nowrap;
     color: black;
     outline: solid 2px transparent;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
     transition:
       background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
       color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
       outline 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
       filter 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  .tech-tag:hover {
+  .tech-tag:hover,
+  .tech-tag.active {
     background-color: rgb(41, 18, 18);
     color: var(--glow);
     outline: solid 2px var(--glow);

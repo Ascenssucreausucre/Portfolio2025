@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  text: string;
+  imageUrl?: string;
+  className: string;
+  id: string;
+}
+const { title, text, imageUrl, className, id } = Astro.props as Props;
+---
+
+<div class={`${className} design-card`} id={id}>
+  {imageUrl ? <img src={imageUrl} alt={title} /> : <slot name="svg" />}
+  <div class="text">
+    <h3>{title}</h3>
+    <p>{text}</p>
+  </div>
+</div>
+
+<style>
+  .design-card {
+    --angle: 120deg;
+    --c1: #3610cc;
+    --c2: #3418a0;
+    --c3: #755fcc;
+    background: linear-gradient(
+      var(--angle),
+      var(--c1) 0%,
+      var(--c2) 50%,
+      var(--c3) 100%
+    );
+    color: white;
+    border-radius: 15px;
+    padding-inline: clamp(10px, 10vw - 1rem, 50px);
+    padding-block: clamp(5px, 5vw - 0.5rem, 25px);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    filter: drop-shadow(0 0 10px #3610cc00);
+    transition:
+      background 0.3s ease,
+      filter 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .design-card:hover {
+    filter: drop-shadow(0 0 10px #3610cca4);
+  }
+  /* .wip-projects-missing::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: #190f47;
+    top: -2px;
+    left: 0;
+  } */
+
+  .design-card h3 {
+    font-weight: 700;
+    color: white;
+    text-align: start;
+    margin-block: 0 5px;
+  }
+  .design-card p {
+    font-weight: 500;
+  }
+</style>
+<script>
+  import { animateGradient } from "../scripts/gradient-anim.ts";
+  animateGradient();
+</script>

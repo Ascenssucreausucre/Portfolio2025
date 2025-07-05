@@ -1,0 +1,71 @@
+---
+import InfiniteCarousel from "./InfiniteCarousel.astro";
+import { getCollection } from "astro:content";
+import DesignSubSection from "./DesignSubSection.astro";
+
+const design = await getCollection("design");
+console.log(design);
+---
+
+<section id="design">
+  <h2>Création graphique</h2>
+  <div class="text-container">
+    <p>
+      Le design étant la porte par laquelle j'ai découvert le développement web,
+      je suis toujours très attaché au fait de donner une âme à mes projets.
+      Bien que le développement web soit majoritairement mon domaine
+      d'expertise, l'élaboration d'une charte graphique pour chaque nouveau
+      projet reste quelque chose qui me tient à coeur. J'aime tenter de créer de
+      choses nouvelles, de nouveaux styles, et les implémenter dans les sites
+      que je développe, professionnels ou non.
+    </p>
+  </div>
+  <h3 class="title">Logos</h3>
+</section>
+<InfiniteCarousel />
+<div class="text-container">
+  <p class="details">
+    Une partie de ces logos peuvent être aperçus en "action", au sein de leur
+    charte graphique respective, dans la partie Projets Majeurs de la section <a
+      href="#dev">développement</a
+    >.
+  </p>
+</div>
+<div class="assets">
+  <h3 class="title">Divers travaux</h3>
+  {
+    design.length > 0 &&
+      design.map(({ data }) => <DesignSubSection {...data} />)
+  }
+</div>
+
+<style>
+  .text-container {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: clamp(35px, 10vw - 2rem, 50px);
+    text-align: justify;
+  }
+  .text-container a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 900;
+  }
+  .details {
+    opacity: 75%;
+    font-style: italic;
+  }
+  .assets {
+    margin-block: 1rem;
+    padding: 1rem clamp(10px, 10vw - 2rem, 200px);
+    background: linear-gradient(
+      110deg,
+      var(--primary-color) 0%,
+      var(--secondary-color) 100%
+    );
+    color: white;
+  }
+  .assets .title {
+    color: white;
+  }
+</style>

@@ -39,7 +39,7 @@ const {
     )
   }
   <div class="content">
-    <h3>{title}</h3>
+    <h3 class="project-title">{title}</h3>
     <p>{description}</p>
     <div class="date">
       <svg
@@ -118,14 +118,19 @@ const {
     aspect-ratio: 9/16;
     object-fit: cover;
     min-width: 200px;
+    border-radius: 15px;
     margin: auto;
   }
-  .project-card img {
+  .images-container img {
     border-radius: 15px;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     transition:
       scale 1s cubic-bezier(0.075, 0.82, 0.165, 1),
       opacity 0.3s ease;
+  }
+  .project-title {
+    color: white;
+    text-align: start;
   }
   .images-container {
     position: relative;
@@ -141,8 +146,8 @@ const {
     bottom: 0;
   }
   .images-container > img.mobile {
-    height: 95%;
-    /* max-width: 65%; */
+    max-height: 95%;
+    max-width: 65%;
     position: absolute;
     z-index: 15;
     left: clamp(10px, 5vw - 1rem, 30px);
@@ -164,7 +169,7 @@ const {
 
   .content {
     flex: 1;
-    min-width: 150px;
+    min-width: 300px;
     max-width: 750px;
   }
 
@@ -179,9 +184,6 @@ const {
     stroke-width: 2px;
   }
 
-  .button-container img {
-    filter: invert();
-  }
   ul {
     padding-block: 0.5rem;
     list-style-type: none;

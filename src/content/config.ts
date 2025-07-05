@@ -38,7 +38,18 @@ const dev = defineCollection({
   }),
 });
 
+const design = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.date(),
+    images: z.array(z.string()).min(1),
+  }),
+});
+
 export const collections = {
   hero,
   dev,
+  design,
 };

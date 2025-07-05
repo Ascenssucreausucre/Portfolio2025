@@ -11,7 +11,9 @@
       tabcontent.classList.remove("active");
     }
 
-    document.getElementById(tabname).classList.add("active");
+    const tab = document.getElementById(tabname) as HTMLElement;
+
+    tab.classList.add("active");
 
     const clickedTabLink = document.querySelector(
       `.tab h3[data-tab="${tabname}"]`
@@ -24,7 +26,11 @@
   tablinks.forEach(function (tablink) {
     tablink.addEventListener("click", function () {
       const tabname = tablink.getAttribute("data-tab");
-      opentab(tabname);
+      if (tabname) {
+        opentab(tabname);
+      } else {
+        return;
+      }
     });
   });
 </script>

@@ -3,11 +3,12 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 import CasualProjectCard from "./CasualProjectCard.astro";
+import DesignCard from "./DesignCard.astro";
 
 type DevEntry = CollectionEntry<"dev">;
 
 function sortByDateDesc(a: DevEntry, b: DevEntry) {
-  return b.data.date.getTime() - a.data.date.getTime(); // récent → ancien
+  return b.data.date.getTime() - a.data.date.getTime();
 }
 
 const importantProjects = (
@@ -23,12 +24,51 @@ const casualProjects = (
     ({ data }) => data.type === "completed" && !data?.important
   )
 ).sort(sortByDateDesc);
+
+const wipProjects = (
+  await getCollection(
+    "dev",
+    ({ data }) => data.type !== "completed" && !data?.important
+  )
+).sort(sortByDateDesc);
 ---
 
 <section id="dev">
   <h2>Développement Web</h2>
+  <div class="wip-projects">
+    <h3 class="title">Projets en cours</h3>
+    <div class="wip-projects-container">
+      {
+        wipProjects.length > 0 ? (
+          wipProjects.map((project) => <div>{project.slug}</div>)
+        ) : (
+          <DesignCard
+            title="Clean Feed"
+            text="Aucun projet en cours, ou assez avancé pour être affiché pour le moment"
+            className="wip-projects-missing"
+            id="gradient-target"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 352.71"
+              slot="svg"
+              fill="#ffffff"
+              class="design-card-icon"
+            >
+              <g id="Calque_1-2" data-name="Calque 1">
+                <g>
+                  <path d="M0,136.68c9.71-2.73,19.44-5.37,29.12-8.22,25.24-7.43,50.61-14.48,75.61-22.65,11.3-3.69,21.89-9.58,32.71-14.65,2.06-.97,3.29-1.26,5.12,.53,56.71,55.83,113.49,111.6,170.25,167.39,.44,.43,.83,.91,1.93,2.12-7.19,10.42-14.08,21.24-21.8,31.43-16.96,22.39-37.4,41.2-60.59,57.03-1.29,.88-2.4,2.03-3.6,3.05h-33c-.97-.2-1.93-.52-2.91-.59-22.49-1.49-44.17-6.58-64.94-15.25-8.81-3.68-17.31-8.11-25.94-12.2,47.75-19.02,88.72-45.41,114.76-91.21-8.42-5.74-17.05-11.63-26-17.74-2.66,3.89-5.19,7.58-7.7,11.28-15.28,22.5-35.26,39.53-59.41,52.02-16.35,8.45-33.36,15.16-50.6,21.42-2.29,.83-3.73,.43-5.27-1.2-8.1-8.66-16.51-17.05-24.28-25.99-4.86-5.59-8.8-11.99-13.55-18.58,40.68-5.22,74.27-22.91,103.55-50.42-7.95-7.46-15.57-14.59-23.38-21.92-.01,.01-.86,.72-1.66,1.47-10.96,10.19-23.21,18.46-36.49,25.37-17.25,8.97-35.89,12.71-54.9,15.1-.98,.12-2.88-1.39-3.2-2.47-3.75-12.79-7.6-25.57-10.72-38.52-1.72-7.11-2.1-14.54-3.09-21.82,0-8.25,0-16.5,0-24.75Z" />
+                  <path d="M384,24.16c-.69,.49-1.46,.89-2.05,1.48-25.73,25.71-51.45,51.43-77.17,77.16-.35,.35-.66,.74-2.04,2.26,1.2,.67,2.61,1.12,3.57,2.04,8.3,7.96,16.45,16.08,24.78,24,7.81,7.43,11.45,16.33,11.03,27.16-.89,23.52-5.11,46.37-12.84,68.59-.24,.69-.58,1.34-1.06,2.45-53.4-52.48-106.57-104.73-159.92-157.16,1.06-.86,1.8-1.47,2.56-2.07,9.92-7.79,20.01-15.38,29.73-23.41,14.44-11.92,31.77-11.61,45.29,1.39,11.44,10.99,22.71,22.16,34.02,33.2,26.98-27,53.81-53.85,81.18-81.25,3.9,4.04,7.26,7.68,10.78,11.15,3.97,3.91,8.08,7.68,12.13,11.51v1.5Z" />
+                </g>
+              </g>
+            </svg>
+          </DesignCard>
+        )
+      }
+    </div>
+  </div>
   <div class="important-projects">
-    <h3>Projets majeurs</h3>
+    <h3 class="title">Projets majeurs</h3>
     <div class="site-container" id="projects-track">
       <button class="left-arrow arrow" id="previous-arrow">
         <svg
@@ -64,14 +104,27 @@ const casualProjects = (
     </div>
   </div>
   <div class="smaller-projects">
-    <h3>Plus petits projets</h3>
-    <div class="smaller-projects-container">
-      {casualProjects.map(({ data }) => <CasualProjectCard {...data} />)}
+    <h3 class="title">Plus petits projets</h3>
+    <div class="smaller-projects-wrapper">
+      <div class="smaller-projects-container">
+        {casualProjects.map(({ data }) => <CasualProjectCard {...data} />)}
+      </div>
+      <div class="button-container">
+        <button class="alt button" id="show-button">Voir plus</button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  #dev > div {
+    margin-block: 50px;
+  }
+  .design-card-icon {
+    width: 4rem;
+    height: auto;
+    max-width: 100%;
+  }
   .important-projects {
     background-color: #190f47;
     margin-block: 1rem;
@@ -79,9 +132,7 @@ const casualProjects = (
     position: relative;
   }
   .important-projects > h3 {
-    text-align: center;
     color: white;
-    margin-bottom: 1rem;
   }
   .site-container {
     display: flex;
@@ -99,7 +150,7 @@ const casualProjects = (
     all: unset;
     position: absolute;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 20;
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
@@ -127,23 +178,46 @@ const casualProjects = (
   .right-arrow {
     right: 0;
   }
-  .smaller-projects {
-    padding-inline: clamp(5px, 25vw - 1rem, 300px);
+  .smaller-projects,
+  .wip-projects {
+    padding-inline: clamp(5px, 30vw - 5rem, 400px);
     max-width: 1600px;
     margin: auto;
   }
-  .smaller-projects > h3 {
-    margin-block: 15px;
-    text-align: center;
-  }
   .smaller-projects-container {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
+    max-height: 500px;
+    overflow-y: hidden;
+  }
+  .smaller-projects-container.active {
+    max-height: none;
+  }
+  .smaller-projects-container::after {
+    position: absolute;
+    content: "";
+    height: 50%;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+    background: linear-gradient(
+      0deg,
+      #e6e6ed 0%,
+      #e6e6edc5 50%,
+      #e6e6ed00 100%
+    );
+  }
+  .smaller-projects-container.active::after {
+    display: none;
   }
   @media screen and (max-width: 700px) {
     .arrow {
       display: none;
+    }
+    .content {
+      min-width: unset;
     }
   }
 </style>
@@ -154,6 +228,17 @@ const casualProjects = (
     "previous-arrow"
   )! as HTMLButtonElement;
   const nextBtn = document.getElementById("next-arrow")! as HTMLButtonElement;
+  const showBtn = document.getElementById("show-button")! as HTMLElement;
+  const smallerTrack = document.querySelector(
+    ".smaller-projects-container"
+  )! as HTMLElement;
+
+  showBtn?.addEventListener("click", () => {
+    smallerTrack.classList.toggle("active");
+    smallerTrack.classList.contains("active")
+      ? (showBtn.innerText = "Voir moins")
+      : (showBtn.innerText = "Voir plus");
+  });
 
   function scrollTrack(forward = true) {
     if (!track) return;

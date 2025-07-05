@@ -1,5 +1,7 @@
 <script>
-  const nav = document.querySelector<HTMLElement>("nav");
+  import { animateGradient } from "../scripts/gradient-anim";
+
+  const nav = document.querySelector<HTMLElement>("nav")!;
 
   window.addEventListener("scroll", () => {
     const { scrollTop } = document.documentElement;
@@ -10,6 +12,7 @@
       nav.classList.add("active");
     }
   });
+  animateGradient("header-title", "#080866", "#0c084d", "#0c084d");
 </script>
 
 <header>
@@ -19,21 +22,12 @@
       <img src="/assets/img/logo-blue.png" alt="Logo" id="logo" />
       <a href="#apropos">Qui suis‑je ?</a>
       <a href="#dev">Développement</a>
-      <a href="#assets">Création graphique</a>
+      <a href="#design">Création graphique</a>
       <a href="#mc">Plus</a>
-      <a href="/assets/CV%20Amiot%20Florian%202024-2025.pdf" target="_blank"
+      <a href="/assets/CV%20Amiot%20Florian%202025.pdf" target="_blank"
         >Voir mon CV</a
       >
     </div>
-    <!-- Burger : on remplace Vue par Vanilla JS → simple toggle de classe -->
-    <!-- <button
-      id="burger"
-      class="burger-button"
-      aria-label="Menu"
-      onclick="document.body.classList.toggle('menu-open');"
-    >
-      <span></span><span></span><span></span>
-    </button> -->
   </nav>
   <div class="waves">
     {
@@ -42,7 +36,7 @@
       ))
     }
   </div>
-  <div class="header-title">
+  <div class="header-title" id="header-title">
     <h1>
       Bonjour, je suis Florian Amiot, développeur full-stack à la recherche d'un
       emploi.
@@ -207,6 +201,9 @@
   }
 
   .header-title {
+    --c1: #13113f;
+    --c2: #0c084d;
+    --c3: #080866;
     width: 100vw;
     display: flex;
     padding-block: 300px 100px;
@@ -216,9 +213,9 @@
     align-items: center;
     background: linear-gradient(
       113deg,
-      rgb(5, 2, 65) 0%,
-      rgba(2, 0, 36, 1) 50%,
-      rgb(8, 8, 102) 100%
+      var(--c1) 0%,
+      var(--c2) 50%,
+      var(--c3) 100%
     );
   }
 
@@ -473,7 +470,7 @@
       position: fixed;
       backface-visibility: hidden;
       height: 60px;
-      padding-left: 0;
+      padding-inline: 0;
       background-color: #e6e6ed;
       width: 100vw;
       line-height: 50px;
