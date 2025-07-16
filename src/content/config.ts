@@ -48,6 +48,17 @@ const design = defineCollection({
   }),
 });
 
+const contactlinks = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    link: z.string(),
+    text: z.string(),
+    mail: z.string().optional(),
+  }),
+});
+
 export const collections = {
   hero,
   dev,

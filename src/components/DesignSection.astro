@@ -4,10 +4,14 @@ import { getCollection } from "astro:content";
 import DesignSubSection from "./DesignSubSection.astro";
 
 const design = await getCollection("design");
-console.log(design);
 ---
 
 <section id="design">
+  <!-- <div id="lightbox" class="lightbox hidden">
+    <span class="close">&times;</span>
+    <img class="lightbox-image" src="" alt="Image en grand" />
+  </div> -->
+
   <h2>Création graphique</h2>
   <div class="text-container">
     <p>
@@ -39,7 +43,43 @@ console.log(design);
   }
 </div>
 
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("lightbox") as HTMLElement;
+    const lightboxImg = lightbox.querySelector(
+      ".lightbox-image"
+    ) as HTMLImageElement;
+    const closeBtn = lightbox.querySelector(".close") as HTMLElement;
+    const thumbnails = Array.from(
+      document.querySelectorAll<HTMLImageElement>("#design img")
+    );
+
+    thumbnails.forEach((img) => {
+      img.addEventListener("click", () => {
+        console.log(img);
+        lightboxImg.src = img.src;
+        lightbox.classList.remove("hidden");
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+      lightboxImg.src = "";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.add("hidden");
+        lightboxImg.src = "";
+      }
+    });
+  });
+</script> -->
+
 <style>
+  #design img:hover {
+    cursor: pointer;
+  }
   .text-container {
     max-width: 800px;
     margin-inline: auto;

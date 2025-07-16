@@ -1,41 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import TechTag from "./TechTag.astro";
+
+const contactLinks = await getCollection("contactlinks");
+---
+
 <footer>
-  <h2 style="color: white; margin-bottom: 20px">Me contacter</h2>
-  <div>
-    <div>
-      <a href="https://instagram.com/florian.amiot"
-        ><img src="./assets/img/medias/instagram.png" alt="Logo Instagram" /></a
-      >
-      <p>florian.amiot</p>
-    </div>
-    <div>
-      <a href="https://www.linkedin.com/in/florian-amiot-26a812291/"
-        ><img src="./assets/img/medias/linkedin.png" alt="Logo Likedin" /></a
-      >
-      <p>Florian Amiot</p>
-    </div>
-    <div>
-      <a href="https://github.com/Ascenssucreausucre"
-        ><img
-          src="./assets/img/medias/github.png"
-          alt="Logo Github"
-          style="filter: invert(100%); -webkit-filter: invert(100%);"
-        /></a
-      >
-      <p>Ascenssucreausucre</p>
+  <div class="contact">
+    <h3>Contact</h3>
+    <div class="link-container">
+      {
+        contactLinks.map(({ data: contact }) => (
+          <a
+            class="contact-link"
+            href={
+              contact?.link
+                ? contact.link
+                : contact?.mail
+                  ? `mailto:${contact.mail}`
+                  : null
+            }
+          >
+            <img src={contact.image} alt="" />
+            {contact.text}
+          </a>
+        ))
+      }
     </div>
   </div>
-  <div>
-    <a href=""><img src="./assets/img/medias/gmail.png" alt="Logo Gmail" /></a>
-    <p>amiotflorian33@gmail.com</p>
+  <div class="technos">
+    <p>Site créé avec <TechTag slug="astro" size={16} /></p>
+    <p class="detail">- Encore en construction -</p>
+    <p>© 2025 Florian Amiot - Tous droits réservés</p>
+    <a href="./termsofuse">Mentions Légales</a>
   </div>
-  <a
-    href="./ml.html"
-    style="
-          text-decoration: none;
-          color: #e6e6ed;
-          margin-left: auto;
-          margin-right: auto;
-        "
-    >Mentions Légales</a
-  >
 </footer>
+<style>
+  footer {
+    background-color: var(--secondary-color);
+    padding-block: 1rem;
+    padding-inline: clamp(2rem, 10vw, 500px);
+    display: flex;
+    justify-content: space-between;
+  }
+  footer * {
+    color: white;
+  }
+  .link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+  }
+  .contact-link img {
+    margin-right: 0.2rem;
+    height: 30px;
+  }
+  footer a {
+    font-weight: 700;
+  }
+  .technos {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+  .detail {
+    opacity: 60%;
+    font-style: italic;
+  }
+</style>

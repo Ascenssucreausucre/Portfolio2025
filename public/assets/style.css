@@ -2,7 +2,11 @@
 
 :root {
   --primary-color: #3610cc;
+  --primary-color-50: #3610cc7e;
+  --primary-color-25: #3610cc3a;
   --secondary-color: #190f47;
+  --secondary-color-50: #190f477e;
+  --secondary-color-25: #190f4741;
   --background-color: #e6e6ed;
 
   --title-font-size: clamp(1.5rem, 2.5vw, 2.5rem);
@@ -23,7 +27,7 @@
 body {
   overflow-x: hidden;
   background-color: #e6e6ed;
-  /* width: 100vw; */
+  width: 100vw;
   font-family: "Exo 2", sans-serif;
 }
 section {
@@ -108,35 +112,6 @@ p {
 }
 .button.alt:hover {
   filter: drop-shadow(0 0 3px #190f47);
-}
-
-footer {
-  padding: 10px;
-  background-color: #190f47;
-  color: #e6e6ed;
-}
-
-footer > div {
-  display: flex;
-  padding: 10px 25vw;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-footer > div:first-of-type {
-  justify-content: space-between;
-}
-
-footer > div:nth-of-type(2) img {
-  margin-right: 10px;
-}
-
-footer > div > div {
-  text-align: center;
-}
-
-footer img {
-  height: 50px;
 }
 
 @media screen and (max-width: 1300px) {

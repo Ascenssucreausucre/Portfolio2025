@@ -1,0 +1,32 @@
+---
+import gtuRaw from "../content/legal/tou.md?raw";
+import { marked } from "marked";
+
+const gtuHtml = marked.parse(gtuRaw);
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mentions légales – Florian Amiot</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a href="/" style="margin-left: 20vw;">Back</a>
+    <article class="markdown-body" set:html={gtuHtml} />
+
+    <style>
+      body {
+        /* background: #f9f9f9; */
+        font-family: system-ui, sans-serif;
+      }
+      .markdown-body {
+        box-sizing: border-box;
+        min-height: 100vh;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+    </style>
+  </body>
+</html>
