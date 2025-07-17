@@ -11,7 +11,7 @@
 
   --title-font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   --subtitle-font-size: clamp(1.2rem, 1.5vw, 1.8rem);
-  --text-font-size: clamp(0.8rem, 1vw, 1rem);
+  --text-font-size: clamp(0.8rem, 1.5vw, 1.1rem);
 }
 
 *,
@@ -70,7 +70,12 @@ h3.title {
 
 p {
   font-family: "Exo 2", sans-serif;
-  font-size: 1.2rem;
+  font-size: var(--text-font-size);
+  font-weight: 300;
+}
+
+a {
+  font-size: var(--text-font-size);
   font-weight: 300;
 }
 

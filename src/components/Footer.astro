@@ -29,8 +29,14 @@ const contactLinks = await getCollection("contactlinks");
     </div>
   </div>
   <div class="technos">
-    <p>Site créé avec <TechTag slug="astro" size={16} /></p>
+    <p>
+      Site créé avec <TechTag slug="astro" size={16} />
+      <TechTag slug="typescript" size={16} />
+    </p>
     <p class="detail">- Encore en construction -</p>
+    <a class="detail" href="https://github.com/Ascenssucreausucre/Portfolio2025"
+      >Voir le readme pour plus d'informations sur l'avancée</a
+    >
     <p>© 2025 Florian Amiot - Tous droits réservés</p>
     <a href="./termsofuse">Mentions Légales</a>
   </div>
@@ -41,6 +47,8 @@ const contactLinks = await getCollection("contactlinks");
     padding-block: 1rem;
     padding-inline: clamp(2rem, 10vw, 500px);
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: space-between;
   }
   footer * {
