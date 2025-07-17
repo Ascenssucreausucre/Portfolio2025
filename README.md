@@ -66,8 +66,8 @@ Ce portfolio est un projet personnel, non ouvert à contribution. Toutefois, n�
 
 ## 📫 Me contacter
 
-- Portfolio live : [https://ascens-portfolio.netlify.app/]
-- Email : [amiotflorian33@gmail.com]
+- Portfolio live : https://ascens-portfolio.netlify.app/
+- Email : amiotflorian33@gmail.com
 
 ---
 
