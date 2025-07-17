@@ -52,7 +52,7 @@ Le portfolio est en cours de construction. Plusieurs sections sont déjà foncti
 
 ## 📎 Accès
 
-- 🚀 Déploiement : [https://ascens-portfolio.netlify.app/]
+- 🚀 Déploiement : https://ascens-portfolio.netlify.app/
 - 📁 Dossier `src/` : contient tous les composants et pages
 - 📂 Dossier `public/` : assets graphiques, icônes, images
 
