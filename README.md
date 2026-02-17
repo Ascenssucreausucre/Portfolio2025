@@ -26,7 +26,7 @@ Le portfolio est en cours de construction. Plusieurs sections sont déjà foncti
 - ⌚ Animations d’entrée et transitions (GSAP / CSS custom)
 - ⌚ Formulaire de contact fonctionnel
 - ⌚ Mode dark/light
-- ⌚ Optimisation des performances (lazy loading, accessibilité)
+- ⌚ Optimisation des performances (lazy loading, accessibilité, resize des images...)
 - ✅ Finitions typographiques et responsive design
 
 ---
