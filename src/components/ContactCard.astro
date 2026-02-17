@@ -1,0 +1,118 @@
+---
+import SwaggCard from "./SwaggCard.astro";
+---
+
+<SwaggCard class="contact-card">
+  <h2>Un projet ?</h2>
+  <div class="content">
+    <img
+      src="/assets/svg/folder-pen.svg"
+      alt="Icône de projet"
+      class="project-icon"
+    />
+    <div class="text">
+      <p>Nous pouvons voir ça ensemble, contactez-nous pour en discuter !</p>
+
+      <ul class="contact-infos">
+        <li>
+          <strong>Email :</strong>
+          <a href="mailto:amiotflorian33@gmail.com">amiotflorian33@gmail.com</a>
+        </li>
+        <li>
+          <strong>Tél :</strong>
+          <a href="tel:+33626597843">06 26 59 78 43</a>
+        </li>
+        <li>
+          <strong>Linkedin :</strong>
+          <a href="https://www.linkedin.com/in/florian-amiot-26a812291/"
+            >https://www.linkedin.com/in/florian-amiot-26a812291/</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="cta-button">Demander un devis</button>
+</SwaggCard>
+
+<style>
+  .contact-card {
+    /* max-width: 350px; */
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #f8f8f8 0%, white 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+    text-align: left;
+    /* outline: solid 2px gray; */
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+  }
+
+  .content > .text {
+    width: 100%;
+  }
+
+  .project-icon {
+    /* fill: var(--primary-color); */
+    filter: invert(13%) sepia(87%) saturate(7498%) hue-rotate(257deg)
+      brightness(77%) contrast(112%);
+    width: clamp(40px, 30%, 150px);
+  }
+
+  .contact-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .contact-card p {
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .contact-infos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+  }
+
+  .contact-infos li {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-infos a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .contact-infos a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .cta-button:hover {
+    background: #0056b3;
+  }
+  @media screen and (max-width: 600px) {
+    .content > img {
+      display: none;
+    }
+  }
+</style>

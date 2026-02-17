@@ -1,0 +1,36 @@
+<div class={`design-card ${Astro.props.class ?? ""}`}>
+  <slot />
+</div>
+
+<style>
+  .design-card {
+    --angle: 120deg;
+    --c1: #3610cc;
+    --c2: #3418a0;
+    --c3: #755fcc;
+    background: linear-gradient(
+      var(--angle),
+      var(--c1) 0%,
+      var(--c2) 50%,
+      var(--c3) 100%
+    );
+    color: white;
+    border-radius: 15px;
+    padding-inline: clamp(10px, 10vw - 1rem, 50px);
+    padding-block: clamp(5px, 5vw - 0.5rem, 25px);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    filter: drop-shadow(0 0 10px #3610cc00);
+    transition:
+      background 0.3s ease,
+      filter 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .design-card:hover {
+    filter: drop-shadow(0 0 10px #3610cca4);
+  }
+</style>
+<script>
+  import { animateGradient } from "../scripts/gradient-anim.ts";
+  animateGradient();
+</script>

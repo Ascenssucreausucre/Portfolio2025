@@ -1,0 +1,51 @@
+<form name="contact" method="POST" data-netlify="true">
+  <h3>Une question ? Un projet ?</h3>
+  <p class="subtitle">
+    Nous pouvons voir ça ensemble, contactez-moi pour en discuter !
+  </p>
+  <p>
+    <label>Nom: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit" class="button alt submit">Envoyer</button>
+  </p>
+</form>
+<style>
+  form {
+    padding: 20px 50px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    max-width: 800px;
+    margin-inline: auto;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.1));
+  }
+  .subtitle {
+    text-align: center;
+    font-weight: 600;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .submit.button {
+    width: 100%;
+    border-radius: 10px;
+  }
+</style>
