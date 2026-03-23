@@ -2,7 +2,7 @@
 title: "Charte graphique Twitch"
 date: 2021-01-06
 description: >
-  Charte graphique créée pour ma chaîne twitch. La plupart de mes travaux sur cette période étaient réalisés à des fins personnelles.
+  Charte graphique conçue pour une chaîne twitch, avec overlay en jeu.
 images:
   [
     "/assets/img/twitch/Overlay.png",

@@ -9,160 +9,76 @@ interface Props {
 const { title, description, images } = Astro.props as Props;
 ---
 
-<article class="design-item">
-  <h3>{title}</h3>
-  <p>{description}</p>
-  <div class="image-container">
-    <button class="left-arrow arrow">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-left-icon lucide-chevron-left"
-        ><path d="m15 18-6-6 6-6"></path></svg
-      >
-    </button>
-    {
-      images.map((url, index) => {
-        const max = images.length + 1;
-        const step = 100 / max;
-        return <img src={url} alt={`${title}-${index}`} loading="lazy" />;
-      })
-    }
-    <button class="right-arrow arrow">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-right-icon lucide-chevron-right"
-        ><path d="m9 18 6-6-6-6"></path></svg
-      >
-    </button>
+<article
+  class="design-item"
+  data-title={title}
+  data-images={JSON.stringify(images)}
+  data-description={description}
+>
+  <div class="folder-icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"
+      ></path>
+    </svg>
   </div>
+  <h3 class="folder-title">{title}</h3>
 </article>
 
 <script>
-  const containers = Array.from(
-    document.querySelectorAll<HTMLElement>(".image-container"),
-  );
-  containers.forEach((container) => {
-    const leftArrow = container.querySelector<HTMLElement>(".left-arrow");
-    const rightArrow = container.querySelector<HTMLElement>(".right-arrow");
-
-    function scrollTrack(forward = true) {
-      if (!container) return;
-      const step = (forward ? 1 : -1) * container.clientWidth;
-      container.scrollBy({ left: step, behavior: "auto" });
-    }
-
-    leftArrow?.addEventListener("click", () => scrollTrack(false));
-    rightArrow?.addEventListener("click", () => scrollTrack(true));
-  });
+  // Removed old script for arrows
 </script>
 
 <style>
   .design-item {
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
     color: black;
-    width: clamp(300px, 60%, 1200px);
-    border-radius: 15px;
-    padding: 1rem 2rem;
-    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.2));
-    margin-block: 2rem;
-    overflow: hidden;
-  }
-  .design-item:nth-of-type(odd) {
-    margin-left: auto;
-  }
-  .design-item p {
+    width: clamp(150px, 20%, 200px);
+    border-radius: 8px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
     margin-block: 1rem;
-  }
-  .image-container {
-    max-height: clamp(200px, 40vw, 400px);
-    position: relative;
-    overflow-y: visible;
-    overflow-x: scroll;
-    display: flex;
-    padding: 1rem;
-    gap: 1rem;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-  .image-container.dragging {
-    cursor: grabbing;
-    scroll-behavior: auto;
-  }
-  .image-container img {
-    max-width: 80%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    border-radius: 15px;
-    scroll-snap-align: center;
-    pointer-events: none;
-    user-select: none;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.24));
-  }
-  .image-container:has(img:hover) img:not(:hover) {
-  }
-  .image-container img:hover {
-    cursor: grab;
-  }
-  .arrow {
-    all: unset;
-    position: fixed;
     cursor: pointer;
-    z-index: 20;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100%;
-    padding-inline: clamp(5px, 5vw - 1rem, 20px);
-    background-color: transparent;
-    display: flex;
+    transition: transform 0.2s;
+    overflow: hidden;
     align-items: center;
-    transition: background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    padding: 1rem;
+    text-align: center;
   }
-  .arrow:hover {
-    background-color: rgba(185, 185, 185, 0.3);
-    backdrop-filter: blur(5px);
+  .design-item:hover {
+    transform: scale(1.1);
   }
-  .arrow:disabled {
-    display: none;
+  .folder-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--background-color);
+    margin-bottom: 0.5rem;
+    margin-inline: auto;
   }
-  .arrow > svg {
-    scale: 2;
-    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
-    mix-blend-mode: color-dodge;
+  .folder-icon svg {
+    width: 100%;
+    height: 100%;
   }
-  .left-arrow {
-    left: 0;
-  }
-  .right-arrow {
-    right: 0;
+  .folder-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    word-wrap: break-word;
+    color: var(--background-color);
   }
   @media screen and (max-width: 700px) {
     .design-item {
-      width: 100%;
+      width: clamp(120px, 30%, 150px);
     }
     .design-item:nth-child(odd) {
       margin-left: unset;
-    }
-    .arrow {
-      display: none;
     }
   }
 </style>

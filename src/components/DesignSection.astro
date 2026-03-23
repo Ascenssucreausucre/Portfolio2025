@@ -35,34 +35,100 @@ const design = await getCollection("design");
     >.
   </p>
 </div>
-<!-- <div class="assets">
+<div class="assets">
   <h3 class="title">Divers travaux</h3>
-  {
-    design.length > 0 &&
-      design.map(({ data }) => <DesignSubSection {...data} />)
-  }
-</div> -->
+  <div class="assets-container">
+    {
+      design.length > 0 &&
+        design.map(({ data }) => <DesignSubSection {...data} />)
+    }
+  </div>
+</div>
 
-<!-- <script>
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-title-bar">
+      <span id="modal-title"></span>
+      <span class="close">&times;</span>
+    </div>
+    <div class="explorer-toolbar">
+      <span></span>
+    </div>
+    <div id="modal-images" class="modal-images">
+      <!-- images will be added here -->
+    </div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox hidden">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-image" src="" alt="Image en grand" />
+</div>
+
+<script>
   document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal") as HTMLElement;
+    const modalTitle = document.getElementById("modal-title") as HTMLElement;
+    const modalImages = document.getElementById("modal-images") as HTMLElement;
+    const closeBtn = modal.querySelector(".close") as HTMLElement;
+
     const lightbox = document.getElementById("lightbox") as HTMLElement;
     const lightboxImg = lightbox.querySelector(
-      ".lightbox-image"
+      ".lightbox-image",
     ) as HTMLImageElement;
-    const closeBtn = lightbox.querySelector(".close") as HTMLElement;
-    const thumbnails = Array.from(
-      document.querySelectorAll<HTMLImageElement>("#design img")
+    const lightboxClose = lightbox.querySelector(
+      ".lightbox-close",
+    ) as HTMLElement;
+
+    const designItems = Array.from(
+      document.querySelectorAll<HTMLElement>(".design-item"),
     );
 
-    thumbnails.forEach((img) => {
-      img.addEventListener("click", () => {
-        console.log(img);
-        lightboxImg.src = img.src;
-        lightbox.classList.remove("hidden");
+    designItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const title = item.dataset.title || "";
+        const images = JSON.parse(item.dataset.images || "[]");
+        const description = item.dataset.description || "";
+
+        modalTitle.textContent = title;
+        const toolbar = modal.querySelector(
+          ".explorer-toolbar span",
+        ) as HTMLElement;
+        toolbar.textContent = `${description}`;
+
+        modalImages.innerHTML = images
+          .map(
+            (url: string, index: number) =>
+              `<img src="${url}" class="modal-image" alt="${title}-${index}" loading="lazy" />`,
+          )
+          .join("");
+
+        modal.classList.remove("hidden");
       });
     });
 
+    // Handle clicking on thumbnails to open lightbox
+    modalImages.addEventListener("click", (e) => {
+      const target = e.target as HTMLImageElement;
+      if (target.tagName === "IMG") {
+        lightboxImg.src = target.src;
+        lightbox.classList.remove("hidden");
+      }
+    });
+
     closeBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modalImages.innerHTML = "";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modalImages.innerHTML = "";
+      }
+    });
+
+    lightboxClose.addEventListener("click", () => {
       lightbox.classList.add("hidden");
       lightboxImg.src = "";
     });
@@ -74,7 +140,7 @@ const design = await getCollection("design");
       }
     });
   });
-</script> -->
+</script>
 
 <style>
   #design img:hover {
@@ -97,6 +163,7 @@ const design = await getCollection("design");
   }
   .assets {
     margin-block: 1rem;
+
     padding: 1rem clamp(10px, 10vw - 2rem, 200px);
     background: linear-gradient(
       110deg,
@@ -107,5 +174,121 @@ const design = await getCollection("design");
   }
   .assets .title {
     color: white;
+  }
+  .assets-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-block: 50px;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal.hidden {
+    display: none;
+  }
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 80%;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-title-bar {
+    background: linear-gradient(90deg, #f0f0f0, #e0e0e0);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  .modal-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .close:hover {
+    color: #f00;
+  }
+  .explorer-toolbar {
+    background: #f9f9f9;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .modal-images {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    overflow-y: auto;
+    max-height: calc(80vh - 150px);
+    background: #fff;
+    align-items: center;
+  }
+  .modal-images :global(.modal-image) {
+    width: 100%;
+    height: auto;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .modal-images :global(.modal-image):hover {
+    transform: scale(1.05);
+  }
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  .lightbox.hidden {
+    display: none;
+  }
+  .lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .lightbox-close:hover {
+    color: #ccc;
   }
 </style>
