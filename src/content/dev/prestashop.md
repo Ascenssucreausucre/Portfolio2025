@@ -2,7 +2,7 @@
 title: "Site Prestashop"
 slug: "prestashop"
 important: false
-image: "/assets/img/prestashop.jpg"
+image: "/assets/img/prestashop.webp"
 date: 2024-12-01
 description: >
   Première expérience Prestashop. Site comique et volontairement moche.

@@ -2,8 +2,8 @@
 title: "Back 2 Nasdace City"
 slug: "back2nasdacecity"
 important: true
-image: "/assets/img/back-to-nasdace-city.png"
-desktop: "/assets/img/back-to-nasdace-city.png"
+image: "/assets/img/back-to-nasdace-city.webp"
+desktop: "/assets/img/back-to-nasdace-city.webp"
 mobile: "/assets/img/b2n.png"
 date: 2025-03-19
 description: >

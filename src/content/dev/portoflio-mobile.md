@@ -2,7 +2,7 @@
 title: "Portfolio Mobile"
 slug: "portfolio-mobile"
 important: false
-image: "/assets/img/portfoliom.png"
+image: "/assets/img/portfoliom.webp"
 date: 2022-12-01
 description: >
   Portfolio pour smartphone réalisé en première année.

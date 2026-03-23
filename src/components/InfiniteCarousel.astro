@@ -4,7 +4,7 @@ const images = Object.values(
     eager: true,
     query: "?url",
     import: "default",
-  })
+  }),
 ) as string[];
 ---
 
@@ -14,7 +14,12 @@ const images = Object.values(
       images
         .concat(images)
         .map((src, i) => (
-          <img src={src} alt={`slide-${i}`} class="carousel-image" />
+          <img
+            src={src}
+            alt={`slide-${i}`}
+            class="carousel-image"
+            loading="lazy"
+          />
         ))
     }
   </div>
@@ -47,7 +52,7 @@ const images = Object.values(
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(calc(-50% - 4rem));
     }
   }
 </style>

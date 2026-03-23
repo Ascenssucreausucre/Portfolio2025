@@ -2,9 +2,9 @@
 title: "International Conference on Systems and Controls"
 slug: "icsc"
 important: true
-image: "/assets/svg/Easycrea portfolio.svg"
-desktop: "/assets/img/icsc-desktop.png"
-mobile: "/assets/img/icsc-mobile.jpg"
+image: "/assets/img/icsc-desktop.webp"
+desktop: "/assets/img/icsc-desktop.webp"
+mobile: "/assets/img/icsc-mobile.webp"
 date: 2025-06-20
 description: >
   L'ICSC est une conférence internationale pour laquelle j'ai procédé à la refonte de leur site, en en recréant un de A à Z.

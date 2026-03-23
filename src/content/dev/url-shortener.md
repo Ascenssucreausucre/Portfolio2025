@@ -2,7 +2,7 @@
 title: "URL-Shortener"
 slug: "url-shortener"
 important: false
-image: "/assets/img/url-shortener.jpg"
+image: "/assets/img/url-shortener.webp"
 date: 2025-12-01
 description: >
   MVP d'un projet de raccourcisseur d'URL fait en 2h en guise de test technique pour un entretien d'embauche.

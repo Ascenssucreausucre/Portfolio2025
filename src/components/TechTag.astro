@@ -127,7 +127,13 @@ if (!tech) {
   class={`tech-tag${tech.color === "#FFFFFF" ? " invert" : ""}`}
   style={`--glow:${tech.color}`}
 >
-  <img src={tech.icon} alt={tech.label} width={size} height={size} />
+  <img
+    src={tech.icon}
+    alt={tech.label}
+    width={size}
+    height={size}
+    loading="lazy"
+  />
   {tech.label}
 </span>
 

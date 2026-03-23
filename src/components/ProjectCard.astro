@@ -31,11 +31,16 @@ const {
     desktop && mobile ? (
       <div class="images-container">
         {" "}
-        <img src={desktop} alt="Desktop example" class="desktop" />
-        <img src={mobile} alt="Mobile example" class="mobile" />
+        <img
+          src={desktop}
+          alt="Desktop example"
+          class="desktop"
+          loading="lazy"
+        />
+        <img src={mobile} alt="Mobile example" class="mobile" loading="lazy" />
       </div>
     ) : (
-      <img src={image} alt={title} />
+      <img src={image} alt={title} loading="lazy" />
     )
   }
   <div class="content">
@@ -92,7 +97,11 @@ const {
       {
         actions?.github && (
           <a href={actions.github} target="_blank" class="button">
-            <img src="/assets/img/medias/github.png" alt="Lien GitHub" />
+            <img
+              src="/assets/img/medias/github.png"
+              alt="Lien GitHub"
+              loading="lazy"
+            />
           </a>
         )
       }

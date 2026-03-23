@@ -4,13 +4,23 @@
     Nous pouvons voir ça ensemble, contactez-moi pour en discuter !
   </p>
   <p>
-    <label>Nom: <input type="text" name="name" /></label>
+    <label>Nom: <input type="text" name="name" placeholder="Votre nom" /></label
+    >
   </p>
   <p>
-    <label>Email: <input type="email" name="email" /></label>
+    <label
+      >Email: <input
+        type="email"
+        name="email"
+        placeholder="Votre@email.com"
+      /></label
+    >
   </p>
   <p>
-    <label>Message: <textarea name="message"></textarea></label>
+    <label
+      >Message: <textarea name="message" placeholder="Votre message"
+      ></textarea></label
+    >
   </p>
   <p>
     <button type="submit" class="button alt submit">Envoyer</button>
@@ -39,6 +49,12 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-top: 5px;
+    transition: border-color 0.3s ease;
+  }
+  input:hover,
+  textarea:hover {
+    border-color: var(--secondary-color);
   }
   textarea {
     resize: vertical;

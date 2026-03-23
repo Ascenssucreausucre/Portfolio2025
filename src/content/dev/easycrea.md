@@ -3,8 +3,8 @@ title: "EasyCrea"
 slug: "easycrea"
 important: true
 image: "/assets/svg/Easycrea portfolio.svg"
-desktop: "/assets/img/easycrea-desktop.png"
-mobile: "/assets/img/easycrea-mobile.png"
+desktop: "/assets/img/easycrea-desktop.webp"
+mobile: "/assets/img/easycrea-mobile.webp"
 date: 2025-01-01
 description: >
   EasyCrea est un site de création de deck, développé en React lors d'un

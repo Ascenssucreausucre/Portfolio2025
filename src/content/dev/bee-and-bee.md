@@ -2,7 +2,7 @@
 title: "Bee&Bee"
 slug: "bee-and-bee"
 important: false
-image: "/assets/img/beebee.png"
+image: "/assets/img/beebee.webp"
 date: 2022-06-01
 description: >
   Application mobile dont l'utilité est de gérer ses ruches au sein d'un

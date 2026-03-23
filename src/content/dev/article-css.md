@@ -2,7 +2,7 @@
 title: "Article @starting-style"
 slug: "article-starting-style"
 important: false
-image: "/assets/img/starting-styles.jpg"
+image: "/assets/img/starting-styles.webp"
 date: 2023-02-01
 description: >
   Ce site présente la nouvelle propriété CSS @starting-style sous la forme d'une sorte d'article.

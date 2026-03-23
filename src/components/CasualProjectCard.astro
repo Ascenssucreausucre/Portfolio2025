@@ -47,7 +47,7 @@ function capitalizeFirstLetter(val: string) {
               date.toLocaleDateString("fr-FR", {
                 year: "numeric",
                 month: "long",
-              })
+              }),
             )
           }</span
         >
@@ -73,7 +73,11 @@ function capitalizeFirstLetter(val: string) {
       {
         actions?.github && (
           <a href={actions.github} target="_blank" class="button">
-            <img src="/assets/img/medias/github.png" alt="Lien GitHub" />
+            <img
+              src="/assets/img/medias/github.png"
+              alt="Lien GitHub"
+              loading="lazy"
+            />
           </a>
         )
       }

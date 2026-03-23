@@ -21,7 +21,7 @@ const contactLinks = await getCollection("contactlinks");
                   : null
             }
           >
-            <img src={contact.image} alt="" />
+            <img src={contact.image} alt="" loading="lazy" />
             {contact.text}
           </a>
         ))

@@ -2,9 +2,9 @@
 title: "Aux Fouées Là"
 slug: "aux-fouees-la"
 important: true
-image: "/assets/img/auxfoueesla.png"
-desktop: "/assets/img/auxfoueesla.png"
-mobile: "/assets/img/auxfoueesla-mobile.png"
+image: "/assets/img/auxfoueesla.webp"
+desktop: "/assets/img/auxfoueesla.webp"
+mobile: "/assets/img/auxfoueesla-mobile.webp"
 date: 2024-01-01
 description: >
   Aux Fouées Là est un food truck fictif. Sur ce site, il est

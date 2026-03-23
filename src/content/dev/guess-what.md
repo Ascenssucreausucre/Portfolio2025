@@ -2,7 +2,7 @@
 title: "Guess What"
 slug: "guess-what"
 important: true
-image: "/assets/img/guess-what.png"
+image: "/assets/img/guess-what.webp"
 date: 2024-06-01
 description: >
   Guess-What est un petit jeu développé dans le but de manipuler

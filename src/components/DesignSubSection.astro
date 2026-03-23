@@ -32,7 +32,7 @@ const { title, description, images } = Astro.props as Props;
       images.map((url, index) => {
         const max = images.length + 1;
         const step = 100 / max;
-        return <img src={url} alt={`${title}-${index}`} />;
+        return <img src={url} alt={`${title}-${index}`} loading="lazy" />;
       })
     }
     <button class="right-arrow arrow">
@@ -55,7 +55,7 @@ const { title, description, images } = Astro.props as Props;
 
 <script>
   const containers = Array.from(
-    document.querySelectorAll<HTMLElement>(".image-container")
+    document.querySelectorAll<HTMLElement>(".image-container"),
   );
   containers.forEach((container) => {
     const leftArrow = container.querySelector<HTMLElement>(".left-arrow");

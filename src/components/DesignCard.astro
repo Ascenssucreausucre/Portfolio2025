@@ -10,7 +10,13 @@ const { title, text, imageUrl, className, id } = Astro.props as Props;
 ---
 
 <div class={`${className} design-card`} id={id}>
-  {imageUrl ? <img src={imageUrl} alt={title} /> : <slot name="svg" />}
+  {
+    imageUrl ? (
+      <img src={imageUrl} alt={title} loading="lazy" />
+    ) : (
+      <slot name="svg" />
+    )
+  }
   <div class="text">
     <h3>{title}</h3>
     <p>{text}</p>
