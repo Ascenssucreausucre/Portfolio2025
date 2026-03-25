@@ -10,5 +10,6 @@ images:
     "assets/img/photos/P1077853.webp",
     "assets/img/photos/vivier.webp",
     "assets/img/photos/header.webp",
+    "assets/img/photos/lessentiel.jfif",
   ]
 ---
